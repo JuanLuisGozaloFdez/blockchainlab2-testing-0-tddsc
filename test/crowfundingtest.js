@@ -44,4 +44,5 @@ contract("CrowFunding", accounts => {
     assert.equal(await crowFunding.balances.call(firstAccount), 5 * SZABO);
     assert.equal(await crowFunding.balances.call(secondAccount), 18 * SZABO);
   });
+  
 });

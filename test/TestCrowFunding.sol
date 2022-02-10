@@ -32,7 +32,7 @@ contract TestCrowFunding {
                    "ALERT: an owner is different than a deployer");
   }
   
-  // 3. Comprobar donaciones a nuestra campaña
+  // 3y4. Comprobar donaciones a nuestra campaña
   uint public initialBalance = 10 ether;
 
   function testAcceptingDonations() public {
@@ -49,7 +49,7 @@ contract TestCrowFunding {
                    "Diference between raised amount and sum of donations");
   }
   
-  // 4. comprobar el balance de nuestros donantes 
+  // 5. comprobar el balance de nuestros donantes 
   function testTrackingDonorsBalance() public {
     // ARRANGE
     CrowFunding crowFunding = new CrowFunding();
@@ -62,5 +62,6 @@ contract TestCrowFunding {
     Assert.equal(crowFunding.balances(address(this)), 20 szabo, 
                    "Balance of the donator is different than sum of donations");
   }
+ 
   
 }
