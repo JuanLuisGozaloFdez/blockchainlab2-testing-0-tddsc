@@ -73,7 +73,22 @@ truffle run coverage
 
 ### con surya
 
-Adicionalmente 
+Adicionalmente vamos a usar la herramienta *surya* para ver la relación entre los contratos (necesitaremos el programa "*dot*" instalable con “*sudo apt install graphviz*”
+
+```bash
+npm install --save-dev surya
+```
+
+
+y lanzaremos el programa con
+
+```bash
+./node_modules/.bin/surya describe contracts/*.sol
+./node_modules/.bin/surya inheritance contracts/*.sol | dot -Tpng >./surya_inheritance
+./node_modules/.bin/surya graph contracts/*.sol | dot -Tpng >./surya_graph
+```
+
+
 
 ## Test de lintering
 
