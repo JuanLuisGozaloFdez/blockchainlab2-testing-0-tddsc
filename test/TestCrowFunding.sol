@@ -41,11 +41,15 @@ contract TestCrowFunding {
     // ACT and ASSERT
     Assert.equal(crowFunding.raised(), 0, 
                    "Initial raised amount is different than 0");
+    //ARRANGE
+    uint amount1 = 10 gwei;
+    uint amount2 = 20 gwei;
+    uint amountSuma = amount1 + amount2;
     // ACT
-    crowFunding.donate.value(10 szabo)();
-    crowFunding.donate.value(20 szabo)();
+    crowFunding.donate{value:amount1}();
+    crowFunding.donate{value:amount2}();
     // ASSERT
-    Assert.equal(crowFunding.raised(), 30 szabo, 
+    Assert.equal(crowFunding.raised(), amountSuma, 
                    "Diference between raised amount and sum of donations");
   }
   
@@ -53,14 +57,18 @@ contract TestCrowFunding {
   function testTrackingDonorsBalance() public {
     // ARRANGE
     CrowFunding crowFunding = new CrowFunding();
+    uint amount1 = 5 gwei;
+    uint amount2 = 15 gwei;
+    uint amountSuma = amount1 + amount2;
     
     // ACT
-    crowFunding.donate.value(5 szabo)();
-    crowFunding.donate.value(15 szabo)();
+    crowFunding.donate{value:amount1}();
+    crowFunding.donate{value:amount2}();
     
     // ASSERT
-    Assert.equal(crowFunding.balances(address(this)), 20 szabo, 
-                   "Balance of the donator is different than sum of donations");
+    Assert.equal(crowFunding.balances(address(this)),
+                 amountSuma,
+                 "Balance of the donator is different than sum of donations");
   }
  
   

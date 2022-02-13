@@ -1,23 +1,19 @@
 const CrowFunding = artifacts.require("CrowFunding");
+const SZABO = 10**12; // 10^12 wei
 
 contract('CrowFunding', (accounts) => {
-  //PRE-ARRANGE
-  const [firstAccount] = accounts;
+  // PRE-ARRANGE
+  const [firstAccount, secondAccount] = accounts;
 
+  // Requerimiento: Solo el propietario puede crearlo
   it("sets an owner", async () => {
     // ARRANGE
     const crowFunding = await CrowFunding.new();
     // ACT and ASSERT
     assert.equal(await crowFunding.owner.call(), firstAccount);
   });
-});
 
-const SZABO = 10**12; // 10^12 wei
-
-contract("CrowFunding", accounts => {
-  // PRE-ARRANGE
-  const [firstAccount, secondAccount] = accounts;
-
+  // Requerimiento: Comprobar donaciones a nuestra campaña
   it("accepts donations to campaign", async () => {
 
     // ARRANGE
@@ -31,6 +27,7 @@ contract("CrowFunding", accounts => {
     assert.equal(await crowFunding.raised.call(), 30 * SZABO);
   });
   
+  // Requerimiento: Asegurar que se mantiene registro de donantes
   it("ensure donator balance keep on track", async () => {
     // ARRANGE
     const crowFunding = await CrowFunding.new();

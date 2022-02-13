@@ -7,7 +7,7 @@ contract CrowFunding {
 
   mapping(address => uint) public balances;
 
-  constructor() public {
+  constructor() {
     owner = msg.sender;
   }
 
