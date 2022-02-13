@@ -1,0 +1,25 @@
+{
+  "name": "blockchainlab2-testing-0-tddsc",
+  "version": "1.0.0",
+  "description": "Demo of different Quality and Security Analisys tools for Smart Contract development",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuanLuisGozaloFdez/blockchainlab2-testing-0-tddsc.git"
+  },
+  "keywords": [
+    "testing"
+  ],
+  "author": "JLG",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JuanLuisGozaloFdez/blockchainlab2-testing-0-tddsc/issues"
+  },
+  "homepage": "https://github.com/JuanLuisGozaloFdez/blockchainlab2-testing-0-tddsc#readme"
+}
