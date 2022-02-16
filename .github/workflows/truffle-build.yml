@@ -40,7 +40,7 @@ jobs:
           /usr/local/lib/node_modules/truffle
           /usr/local/bin
         key: ${{ runner.os }}-modules-${{ hashFiles('./packages-lock.json') }}
-        restore-key: ${{ runner.os }}-modules-
+        restore-keys: ${{ runner.os }}-modules-
 
     - name: Install Truffle
       if: steps.nodemodulescache.outputs.cache-hit != 'true'
