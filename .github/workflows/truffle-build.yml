@@ -2,7 +2,7 @@ name: Truffle Build
 
 env:
 #  WALLET_SECRET: ${{ secrets.DEV_WALLET_SECRET }} # Set Deployer wallet secret using GitHub secrets
-  RPC: https://localhost:8545 # Testnet RPC
+  RPC: http://localhost:8545 # Testnet RPC
   NETWORK_ID: "*" # Testnet Network ID
 #  CONFIRMATIONS: 1 # Confirmation blocks required
 
@@ -34,20 +34,26 @@ jobs:
 
     - uses: actions/cache@v2
       with:
-        path: ./node_modules
+        id: nodemodulescache
+        path: |
+          ./node_modules
+          /usr/local/lib/node_modules
+          /usr/local/bin
         key: ${{ runner.os }}-modules-${{ hashFiles('./packages-lock.json') }}
 
     - name: Install Truffle
+      if: steps.nodemodulescache.outputs.cache-hit != 'true'
       run: npm install truffle -g
     
     - name: Install Truffle Dependencies
+      if: steps.nodemodulescache.outputs.cache-hit != 'true'
       run: npm install      
     
     - name: Run Truffle Test  
       run: truffle test
 
-    - name: Start a Ganache-Cli server in background
-      run: ./node_modules/.bin/ganache-cli &
+    #- name: Start a Ganache-Cli server in background
+    #  run: ./node_modules/.bin/ganache-cli &
       
     - name: Run Test Coverage
       run: truffle run coverage
