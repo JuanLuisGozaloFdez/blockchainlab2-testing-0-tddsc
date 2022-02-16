@@ -44,7 +44,7 @@ contract TestCrowFunding {
     //ARRANGE
     uint amount1 = 10 gwei;
     uint amount2 = 20 gwei;
-    uint amountSuma = amount1 + amount2;
+    uint amountSuma = amount1 + amount2 + 1;
     // ACT
     crowFunding.donate{value:amount1}();
     crowFunding.donate{value:amount2}();
