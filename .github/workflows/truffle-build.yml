@@ -1,9 +1,9 @@
 name: Truffle Build
 
-#env:
+env:
 #  WALLET_SECRET: ${{ secrets.DEV_WALLET_SECRET }} # Set Deployer wallet secret using GitHub secrets
-#  RPC: https://localhost-example # Testnet RPC
-#  NETWORK_ID: 5745 # Testnet Network ID
+  RPC: https://localhost:8545 # Testnet RPC
+  NETWORK_ID: "*" # Testnet Network ID
 #  CONFIRMATIONS: 1 # Confirmation blocks required
 
 on:
@@ -46,5 +46,8 @@ jobs:
     - name: Run Truffle Test  
       run: truffle test
 
+    - name: Start a Ganache-Cli server in background
+      run: ./node_modules/.bin/ganache-cli &
+      
     - name: Run Test Coverage
       run: truffle run coverage
