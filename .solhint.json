@@ -1,0 +1,8 @@
+{
+  "extends": "solhint:recommended",
+  "rules": {
+  	"avoid-throw": false,
+  	"avoid-suicide": "error"
+
+  }
+}

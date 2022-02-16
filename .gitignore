@@ -3,5 +3,6 @@ package-lock.json
 build/
 coverage/
 coverage.json
+outputs/
 *.png
 

@@ -10,7 +10,7 @@ module.exports = {
   },
 
   // Plugins
-  plugins: ["solidity-coverage"],
+  plugins: ["solidity-coverage", "truffle-security"],
 
   // Set default mocha options here, use special reporters etc.
   mocha: {
