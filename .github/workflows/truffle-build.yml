@@ -33,13 +33,14 @@ jobs:
     #  run: echo "${{ secrets.DOT_ENV }}" > .env
 
     - uses: actions/cache@v2
+      id: nodemodulescache
       with:
-        id: nodemodulescache
         path: |
           ./node_modules
-          /usr/local/lib/node_modules
+          /usr/local/lib/node_modules/truffle
           /usr/local/bin
         key: ${{ runner.os }}-modules-${{ hashFiles('./packages-lock.json') }}
+        restore-key: ${{ runner.os }}-modules-
 
     - name: Install Truffle
       if: steps.nodemodulescache.outputs.cache-hit != 'true'
