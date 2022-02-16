@@ -1,5 +1,11 @@
 name: Truffle Build
 
+#env:
+#  WALLET_SECRET: ${{ secrets.DEV_WALLET_SECRET }} # Set Deployer wallet secret using GitHub secrets
+#  RPC: https://localhost-example # Testnet RPC
+#  NETWORK_ID: 5745 # Testnet Network ID
+#  CONFIRMATIONS: 1 # Confirmation blocks required
+
 on:
   push:
     branches: [ master ]
@@ -8,29 +14,36 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
+    
     - name: Check out the source code
       uses: actions/checkout@v2
+    
     - name: Setup NodeJS 14
       uses: actions/setup-node@v2
       with:
         node-version: '14'
+    
     - name: Show NodeJS version    
       run: npm --version
     
-    - name: Create .env file
-      run: echo "${{ secrets.DOT_ENV }}" > .env
-    
+    #- name: Create .env file
+    #  run: echo "${{ secrets.DOT_ENV }}" > .env
+
+    - uses: actions/cache@v2
+      with:
+        path: ./node_modules
+        key: ${{ runner.os }}-modules-${{ hashFiles('./packages-lock.json') }}
+
     - name: Install Truffle
       run: npm install truffle -g
     
     - name: Install Truffle Dependencies
       run: npm install      
     
-    - name: Run Truffle Test with CI=true for Codechecks  
+    - name: Run Truffle Test  
       run: truffle test
 
     - name: Run Test Coverage
