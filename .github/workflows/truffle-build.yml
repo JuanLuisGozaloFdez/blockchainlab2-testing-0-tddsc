@@ -1,10 +1,10 @@
 name: Truffle Build
 
-env:
-#  WALLET_SECRET: ${{ secrets.DEV_WALLET_SECRET }} # Set Deployer wallet secret using GitHub secrets
-  RPC: http://localhost:8545 # Testnet RPC
-  NETWORK_ID: "*" # Testnet Network ID
-#  CONFIRMATIONS: 1 # Confirmation blocks required
+# env:
+#   WALLET_SECRET: ${{ secrets.DEV_WALLET_SECRET }} # Set Deployer wallet secret using GitHub secrets
+#   RPC: http://localhost:8545 # Testnet RPC
+#   NETWORK_ID: "*" # Testnet Network ID
+#   CONFIRMATIONS: 1 # Confirmation blocks required
 
 on:
   push:
@@ -21,40 +21,40 @@ jobs:
     - name: Check out the source code
       uses: actions/checkout@v2
     
-    - name: Setup NodeJS 14
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
+#    - name: Setup NodeJS 14
+#      uses: actions/setup-node@v2
+#      with:
+#        node-version: '14'
     
-    - name: Show NodeJS version    
-      run: npm --version
+#    - name: Show NodeJS version    
+#      run: npm --version
     
-    #- name: Create .env file
-    #  run: echo "${{ secrets.DOT_ENV }}" > .env
+#    #- name: Create .env file
+#    #  run: echo "${{ secrets.DOT_ENV }}" > .env
 
-    - uses: actions/cache@v2
-      id: nodemodulescache
-      with:
-        path: |
-          ./node_modules
-          /usr/local/lib/node_modules/truffle
-          /usr/local/bin
-        key: ${{ runner.os }}-modules-${{ hashFiles('./packages-lock.json') }}
-        restore-keys: ${{ runner.os }}-modules-
+#    - uses: actions/cache@v2
+#      id: nodemodulescache
+#      with:
+#        path: |
+#          ./node_modules
+#          /usr/local/lib/node_modules/truffle
+#          /usr/local/bin
+#        key: ${{ runner.os }}-modules-${{ hashFiles('./packages-lock.json') }}
+#        restore-keys: ${{ runner.os }}-modules-
 
-    - name: Install Truffle
-      if: steps.nodemodulescache.outputs.cache-hit != 'true'
-      run: npm install truffle -g
+#    - name: Install Truffle
+#      if: steps.nodemodulescache.outputs.cache-hit != 'true'
+#      run: npm install truffle -g
     
-    - name: Install Truffle Dependencies
-      if: steps.nodemodulescache.outputs.cache-hit != 'true'
-      run: npm install      
+#    - name: Install Truffle Dependencies
+#      if: steps.nodemodulescache.outputs.cache-hit != 'true'
+#      run: npm install      
     
-    - name: Run Truffle Test  
-      run: truffle test
+#    - name: Run Truffle Test  
+#      run: truffle test
 
-    #- name: Start a Ganache-Cli server in background
-    #  run: ./node_modules/.bin/ganache-cli &
+#    #- name: Start a Ganache-Cli server in background
+#    #  run: ./node_modules/.bin/ganache-cli &
       
-    - name: Run Test Coverage
-      run: truffle run coverage
+#    - name: Run Test Coverage
+#      run: truffle run coverage
