@@ -14,6 +14,5 @@ contract CrowFunding {
   function donate() public payable {
     raised += msg.value;
     balances[msg.sender] += msg.value;
-  }
-  
+  }  
 }
